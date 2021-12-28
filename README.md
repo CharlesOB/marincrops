@@ -1,5 +1,5 @@
 # marincrops
-An interpreter for an esolang inspired by an enlistment in the United States Marine Corps.
+An interpreted esolang inspired by an enlistment in the United States Marine Corps.
 
 marincrops is a esoteric scripting language that is designed to make you feel micromanaged, to run slowly, and to waste all its money on things that do not matter, like paint for a condemned barracks. 
 
