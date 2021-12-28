@@ -1,0 +1,44 @@
+attention on deck
+good morning sir
+Louder aye sir
+
+let's break Add down barney-style for Cpl First and Cpl Second, frickin
+	trust Cpl Second Has_more_than no crayons aye sir, frickin
+		motivate Add One_more_than Cpl First aye sir and One_less_than Cpl Second aye sir aye sir
+	kill
+	trust Cpl Second Has no crayons aye sir, frickin
+		motivate Cpl First
+	kill
+BAMCIS
+
+let's break Fib down barney-style for Sgt Last1 and Sgt Last2 and Sgt Index, frickin
+	trust Sgt Index Has no crayons aye sir, frickin
+		motivate a crayon
+	kill
+	trust Sgt Index Has a crayon aye sir, frickin
+		motivate a crayon
+	kill
+	Sgt Next has Sgt Last1 Add Sgt Last2 aye sir
+	trust Sgt Index Has 2 crayons aye sir, frickin
+		motivate Sgt Next
+	kill
+	trust Sgt Index Has_more_than 2 crayons aye sir, frickin
+		motivate Fib Sgt Last2 and Sgt Next and One_less_than Sgt Index aye sir aye sir 
+	kill
+BAMCIS
+
+let's break Fib_index down barney-style for Sgt Index, frickin
+	motivate Fib a crayon and a crayon and Sgt Index aye sir
+BAMCIS
+
+let's break Print_fib down barney-style for Sgt Index, frickin
+	Scream Fib_index Sgt Index aye sir and ", " aye sir
+	trust Sgt Index Has no crayons aye sir, frickin
+		motivate yes sir
+	kill
+	Print_fib Sgt Index One_less_than aye sir aye sir
+BAMCIS
+
+Print_fib 12 crayons aye sir
+
+Go_away aye sir
