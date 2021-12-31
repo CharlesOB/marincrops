@@ -153,22 +153,35 @@ class MarinEnv:
                     return None
                 else:
                     blocks = blocks[1:-1]
-            
-        for block in blocks:
-            if type(block) is list:
-                result = self.parse_blocks(block)
-                if result:
-                    return result
-            else:
-                block = block.strip()
-                if not block:
-                    continue
-                elif MarinEnv.is_expression(block):
-                    result = self.parse_expression(block, continue_processing = True)
-                elif block.startswith("motivate "):
-                    return self.parse_expression(block.replace("motivate ", ""), continue_processing = True)
+        elif blocks[0].strip() == "i have a saved round, frickin":
+            block_flag = "loop"
+            blocks = blocks[1:-1]
+
+        times = 0
+        while block_flag == "loop" or times == 0:
+            for block in blocks:
+                if type(block) is list:
+                    result = self.parse_blocks(block)
+                    if result and len(result) == 3 and block_flag == "loop":
+                        return None
+                    elif result:
+                        return result
                 else:
-                    error(block, "Is that how you talk to a superior?")
+                    block = block.strip()
+                    if not block:
+                        continue
+                    elif block == "carry on":
+                        if block_flag == "loop":
+                            return None
+                        else:
+                            return (None, "no sir", "carry on")
+                    elif MarinEnv.is_expression(block):
+                        result = self.parse_expression(block, continue_processing = True)
+                    elif block.startswith("motivate "):
+                        return self.parse_expression(block.replace("motivate ", ""), continue_processing = True)
+                    else:
+                        error(block, "Is that how you talk to a superior?")
+            times -= 1
 
     def scan_lines(self, lines, continue_processing = False):
         block_type = None
@@ -196,14 +209,21 @@ class MarinEnv:
                         block_type = "comment"
                     elif line == "attention on deck":
                         block_type = "attn"
+                    elif line == "i have a saved round, frickin":
+                        block_type = "loop"
+                        enclosed_lines.append(line)
+
                     else:
                         error(line, "Unrecognized keyword")
-                elif line == 'kill' or line == 'BAMCIS':
+                elif line == 'kill' or line == 'BAMCIS' or line == "any more saved rounds?":
                     if line == 'kill':
                         if block_type != "cond":
                             error(line, "You're on the wrong block")
                     elif line == 'BAMCIS':
                         if block_type != 'func':
+                            error(line, "You're on the wrong block")
+                    elif line == "any more saved rounds?":
+                        if block_type != 'loop':
                             error(line, "You're on the wrong block")
                     enclosed_lines.append(line)
                     if not continue_processing:
@@ -223,7 +243,7 @@ class MarinEnv:
                         return ([], i)
                     else:
                         return self.scan_lines(lines[i+1:], continue_processing = True)
-                elif line.startswith("motivate "):
+                elif line.startswith("motivate ") or line == "carry on":
                     enclosed_lines.append(line)
                 else:
                     # start a new block
